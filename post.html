@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading... — Scott</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 單篇文章專用樣式 */
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.7); /* 讓閱讀更清晰 */
+      min-height: 100vh;
+    }
+    
+    .article-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .article-title {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .article-meta {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: flex;
+      gap: 15px;
+    }
+
+    .article-body {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #e0e0e0;
+    }
+
+    /* 返回按鈕 */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+    .back-btn:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <!-- 一樣要有 Matrix 背景 -->
+  <canvas id="matrix"></canvas>
+
+  <div class="article-container">
+    <a href="/blog" class="back-btn">← Back to Blog</a>
+
+    <!-- 這裡的內容會由 JS 自動填入 -->
+    <div id="article-content">
+      <h1 style="color:red">Loading...</h1>
+    </div>
+  </div>
+
+  <!-- 引用 JS -->
+  <script src="script.js"></script>
+  <!-- 重要：引用資料庫 -->
+  <script src="blog.js"></script>
+
+  <script>
+    // --- 這裡就是「抓取 ID 並顯示文章」的魔法 ---
+    
+    // 1. 從網址列抓取參數 (例如 ?id=3)
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+
+    // 2. 去 blogPosts 陣列裡面找 ID 對應的文章
+    // 注意：網址抓來的 ID 是字串，所以用 == 寬鬆比對，或轉成數字
+    const post = blogPosts.find(p => p.id == postId);
+
+    const contentDiv = document.getElementById('article-content');
+
+    if (post) {
+        // 3. 如果找到了，把內容填進去
+        document.title = post.title + " — Scott"; // 修改瀏覽器分頁標題
+        contentDiv.innerHTML = `
+            <header class="article-header">
+                <h1 class="article-title">${post.title}</h1>
+                <div class="article-meta">
+                    <span>📅 ${post.date}</span>
+                    <span>🏷️ ${post.tags.join(', ')}</span>
+                </div>
+            </header>
+            <div class="article-body">
+                ${post.content}
+            </div>
+        `;
+    } else {
+        // 4. 如果找不到 (例如亂打 ID)，顯示錯誤
+        contentDiv.innerHTML = `<h1>❌ Article not found</h1><p>The post with ID ${postId} does not exist.</p>`;
+    }
+  </script>
+</body>
+</html>
