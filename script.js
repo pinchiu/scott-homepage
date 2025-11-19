@@ -2,37 +2,38 @@
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 
-// 設定 Canvas 大小為全螢幕
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
+
+// 初始化並監聽視窗大小改變
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
 const fontSize = 14;
-const columns = canvas.width / fontSize; // 計算有多少列
+let columns = canvas.width / fontSize;
 const drops = [];
 
-// 初始化每一列的落下位置 (y座標)
+// 初始化落下位置
 for (let x = 0; x < columns; x++) {
     drops[x] = 1;
 }
 
 function drawMatrix() {
-    // 每次繪製都蓋上一層半透明黑色，形成拖影效果
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    // 每次繪製覆蓋一層半透明黑色，形成拖影
+    ctx.fillStyle = 'rgba(13, 13, 13, 0.05)'; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#0F0'; // 綠色文字
+    ctx.fillStyle = '#0F0'; // Matrix Green
     ctx.font = fontSize + 'px monospace';
 
     for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        // 如果落到底部，隨機重置回頂部
+        // 隨機重置回頂部
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
             drops[i] = 0;
         }
@@ -40,11 +41,11 @@ function drawMatrix() {
     }
 }
 
-// 設定動畫幀率
+// 啟動動畫迴圈
 setInterval(drawMatrix, 33);
 
 
-// --- 2. Language Switcher (雙語切換) ---
+// --- 2. Language Switcher (雙語切換邏輯) ---
 const translations = {
     en: {
         greeting: "Hi — I'm Scott",
@@ -80,15 +81,14 @@ langBtns.forEach(btn => {
         e.preventDefault();
         const lang = btn.getAttribute('data-lang');
         
-        // 更新按鈕狀態
+        // 1. 更新按鈕樣式
         langBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        // 更新文字內容
+        // 2. 更新頁面文字
         elementsToTranslate.forEach(el => {
             const key = el.getAttribute('data-key');
             if (translations[lang][key]) {
-                // 使用 innerHTML 以保留 <strong> 等標籤
                 el.innerHTML = translations[lang][key];
             }
         });
