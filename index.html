@@ -1,23 +1,23 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description"
-    content="Scott's personal introduction and photography portfolio, with bilingual switching and interactive effects.">
+  <meta name="description" content="Scott's personal introduction and photography portfolio.">
   <title>Intro — Scott</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <canvas id="matrix"></canvas>
+
   <main class="container">
     <div class="lang-toggle">
       <a href="/blog.html" class="lang-btn">Blog</a>
-      <a href="#" class="lang-btn" data-lang="zh">中文</a>
-      <a href="#" class="lang-btn active" data-lang="en">English</a>
+      <a href="#" class="lang-btn" id="btn-zh" data-lang="zh">中文</a>
+      <a href="#" class="lang-btn active" id="btn-en" data-lang="en">English</a>
     </div>
+
     <section class="card">
       <header>
         <div class="avatar">S</div>
@@ -26,32 +26,40 @@
           <p class="lead" data-key="subtitle">University Student</p>
         </div>
       </header>
+
       <div class="grid">
         <div class="about">
           <h2 data-key="about-title">About Me</h2>
-          <p data-key="about-desc">I am a university student passionate about tech. I enjoy <strong>photography</strong>
-            and training in the <strong>gym</strong>.</p>
+          <p data-key="about-desc">
+            I am a university student passionate about tech. I enjoy <strong>photography</strong> and training in the <strong>gym</strong>.
+          </p>
+
           <h3 data-key="portfolio-title">Photography Portfolio</h3>
           <div class="photo-grid">
-            <a href="/image?id=1ndHN1rn_bBigakSpxRYhs-gP7ukN1ZcU" target="_blank" class="photo">
-              <img src="/image?id=1ndHN1rn_bBigakSpxRYhs-gP7ukN1ZcU" alt="Scott's photography 1" loading="eager"
-                decoding="async" fetchpriority="high">
-            </a>
-            <a href="/image?id=1CcuaCwKwKLAoXqmBUI5ULgjylu3EeYDn" target="_blank" class="photo">
-              <img src="/image?id=1CcuaCwKwKLAoXqmBUI5ULgjylu3EeYDn" alt="Scott's photography 2" loading="eager"
-                decoding="async" fetchpriority="high">
-            </a>
-            <a href="/image?id=1rGjLdXb2OOkylkcT3W3wlW1Ml1E_ZTZg" target="_blank" class="photo">
-              <img src="/image?id=1rGjLdXb2OOkylkcT3W3wlW1Ml1E_ZTZg" alt="Scott's photography 3" loading="eager"
-                decoding="async" fetchpriority="high">
-            </a>
+            <a href="#" class="photo"><img src="https://placehold.co/300x200/333/0f0?text=Photo+1" alt="Photo 1"></a>
+            <a href="#" class="photo"><img src="https://placehold.co/300x200/333/0f0?text=Photo+2" alt="Photo 2"></a>
+            <a href="#" class="photo"><img src="https://placehold.co/300x200/333/0f0?text=Photo+3" alt="Photo 3"></a>
           </div>
-          <p><a class="btn instagram" href="https://www.instagram.com/pinchiu_chen/">Instagram</a></p>
+          
+          <p style="margin-top: 1rem;">
+            <a class="btn instagram" href="https://www.instagram.com/pinchiu_chen/" target="_blank">Instagram</a>
+          </p>
         </div>
+
+
+
+        <div class="lang-toggle">
+          <a href="/blog" class="lang-btn">Blog</a>
+          
+          <a href="#" class="lang-btn" id="btn-zh" data-lang="zh">中文</a>
+          <a href="#" class="lang-btn active" id="btn-en" data-lang="en">English</a>
+        </div>
+
         <aside class="side" id="contact">
           <h3 data-key="contact-title">Get in Touch</h3>
           <p>Instagram: <a href="https://www.instagram.com/pinchiu_chen/">@pinchiu_chen</a></p>
           <p>GitHub: <a href="https://github.com/pinchiu?tab=repositories">@pinchiu</a></p>
+
           <h3 data-key="interests-title">Interests</h3>
           <ul style="font-size:14px;color:var(--muted)">
             <li data-key="interest-photo">Photography</li>
@@ -62,7 +70,7 @@
       </div>
     </section>
   </main>
+  
   <script src="script.js"></script>
 </body>
-
 </html>
