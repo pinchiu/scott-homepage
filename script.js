@@ -8,8 +8,9 @@ if (canvas) {
   const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
   const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const nums = '0123456789';
+  const bio = 'ATCGATCGATCGATCG'; // Emphasize Bioinfo
 
-  const alphabet = katakana + latin + nums;
+  const alphabet = katakana + latin + nums + bio;
 
   const fontSize = 16;
   const columns = canvas.width / fontSize;
@@ -21,10 +22,10 @@ if (canvas) {
   }
 
   const draw = () => {
-    ctx.fillStyle = 'rgba(15, 23, 36, 0.05)'; // Using --bg color with low opacity for trail
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Black trail
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#06b6d4'; // Using --accent color
+    ctx.fillStyle = '#0F0'; // Bright Green
     ctx.font = fontSize + 'px monospace';
 
     for (let i = 0; i < rainDrops.length; i++) {
