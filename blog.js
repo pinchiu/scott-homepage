@@ -1,26 +1,6 @@
 // --- 1. 文章資料庫 (你的內容都在這) ---
 const blogPosts = [
-    {
-        id: 4,
-        title: "深入理解 JavaScript (URL Parameters)",
-        date: "2025-11-21",
-        tags: ["Coding", "JS"],
-        content: "今天我們來學習如何使用 URL 參數。這是一種在網頁之間傳遞資料的簡單方法。<br><br>當你在網址後面看到 `?id=1` 時，那個 `id` 就是參數。我們可以使用 `window.location.search` 來讀取它。這對於靜態網站來說非常有用，因為我們不需要資料庫就能動態顯示內容。"
-    },
-    {
-        id: 3,
-        title: "Building My Personal Website",
-        date: "2025-08-19",
-        tags: ["Coding", "Web"],
-        content: "I finally built my own website using HTML, CSS, and JavaScript! I added a Matrix rain effect because it looks cool. <br><br> It's hosted on my own server using simple static files."
-    },
-    {
-        id: 2,
-        title: "Leg Day at the Gym",
-        date: "2025-08-15",
-        tags: ["Gym", "Life"],
-        content: "Hit a new PR on squats today! 100kg for 5 reps. My legs are shaking but it feels great. Consistency is key."
-    },
+
     {
         id: 1,
         title: "Hello World",
@@ -36,12 +16,12 @@ const blogContainer = document.getElementById('blog-posts');
 // 這個 if 是為了防止在 post.html 發生錯誤 (因為 post.html 沒有 id="blog-posts")
 if (blogContainer) {
     blogContainer.innerHTML = ''; // 清空目前內容
-
+    
     blogPosts.forEach(post => {
         // 產生摘要：只取內容的前 100 個字，後面加 ...
         // 這裡簡單處理，實際應用可能要移除 HTML 標籤再截斷
         const summary = post.content.substring(0, 100) + '...';
-
+        
         const postHTML = `
             <article class="post-card">
                 <div class="post-date">${post.date}</div>
